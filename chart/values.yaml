@@ -1,7 +1,6 @@
 global:
   domain: c-43fae87.kyma.ondemand.com
   image:
-    registry: ""
     tag: kyma-v1
 srv:
   env:
