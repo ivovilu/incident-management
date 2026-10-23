@@ -15,8 +15,9 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-incidents": "cds watch --open ns.incidents/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "test": "CDS_PLUGIN_UI5_ACTIVE=false node --test --test-timeout=30000 test/test.cjs"
+    "watch-incidents": "cds watch --open ns.kyma.incidents/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "test": "CDS_PLUGIN_UI5_ACTIVE=false node --test --test-timeout=30000 test/test.cjs",
+    "cds-build": "node scripts/prepare-cicd.mjs"
   },
   "private": true,
   "workspaces": [

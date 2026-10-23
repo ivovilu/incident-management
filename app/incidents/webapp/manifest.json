@@ -1,7 +1,7 @@
 {
   "_version": "1.89.0",
   "sap.app": {
-    "id": "ns.incidents",
+    "id": "ns.kyma.incidents",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -27,8 +27,8 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "incidents-display": {
-          "semanticObject": "incidents",
+        "incidentskyma-display": {
+          "semanticObject": "incidentskyma",
           "action": "display",
           "signature": {
             "parameters": {},
@@ -72,7 +72,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "ns.incidents.i18n.i18n"
+          "bundleName": "ns.kyma.incidents.i18n.i18n"
         }
       },
       "": {
@@ -168,6 +168,6 @@
   },
   "sap.cloud": {
     "public": true,
-    "service": "incidentmanagement.service"
+    "service": "incidentmanagement.kyma"
   }
 }

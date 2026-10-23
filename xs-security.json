@@ -27,5 +27,21 @@
       ],
       "attribute-references": []
     }
+  ],
+  "role-collections": [
+    {
+      "name": "IncidentManagement_Kyma_Support",
+      "description": "Support role collection for Incident Management on Kyma",
+      "role-template-references": [
+        "$XSAPPNAME.support"
+      ]
+    },
+    {
+      "name": "IncidentManagement_Kyma_Admin",
+      "description": "Admin role collection for Incident Management on Kyma",
+      "role-template-references": [
+        "$XSAPPNAME.admin"
+      ]
+    }
   ]
 }

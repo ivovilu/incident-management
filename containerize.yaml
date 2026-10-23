@@ -1,0 +1,27 @@
+_schema-version: "1.0"
+repository: docker.io/ivovilu
+tag: kyma-v1
+modules:
+  - name: incident-management-srv
+    build-parameters:
+      buildpack:
+        type: nodejs
+        builder: builder-jammy-base
+        path: gen/srv
+        env:
+          BP_NODE_RUN_SCRIPTS: ""
+  - name: incident-management-hana-deployer
+    build-parameters:
+      buildpack:
+        type: nodejs
+        builder: builder-jammy-base
+        path: gen/db
+        env:
+          BP_NODE_RUN_SCRIPTS: ""
+  - name: incident-management-html5-deployer
+    tag: kyma-v2
+    build-parameters:
+      buildpack:
+        type: sapse/application-content-deployer-buildpack:1.5.0
+        builder: builder-jammy-base
+        path: .deploy/html5-deployer

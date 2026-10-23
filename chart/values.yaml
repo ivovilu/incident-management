@@ -1,0 +1,95 @@
+global:
+  domain: c-43fae87.kyma.ondemand.com
+  image:
+    registry: docker.io
+    tag: kyma-v1
+srv:
+  env:
+    CDS_REQUIRES_DB_POOL: '{"acquireTimeoutMillis":15000}'
+  bindings:
+    auth:
+      serviceInstanceName: xsuaa
+    db:
+      serviceInstanceName: hana
+    destination:
+      serviceInstanceName: destination
+  image:
+    repository: ivovilu/incident-management-srv
+  resources:
+    limits:
+      ephemeral-storage: 1G
+      memory: 500M
+    requests:
+      ephemeral-storage: 1G
+      cpu: 500m
+      memory: 500M
+  health:
+    liveness:
+      path: /health
+    readiness:
+      path: /health
+xsuaa:
+  serviceOfferingName: xsuaa
+  servicePlanName: application
+  parameters:
+    tenant-mode: dedicated
+    oauth2-configuration:
+      redirect-uris:
+        - https://*.{{ tpl .Values.global.domain . }}/**
+    xsappname: incident-management-{{ .Release.Namespace }}
+hana-deployer:
+  image:
+    repository: ivovilu/incident-management-hana-deployer
+  bindings:
+    hana:
+      serviceInstanceName: hana
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
+hana:
+  serviceOfferingName: hana
+  servicePlanName: hdi-shared
+destination:
+  serviceOfferingName: destination
+  servicePlanName: lite
+  parameters:
+    version: 1.0.0
+    HTML5Runtime_enabled: true
+html5-apps-repo-host:
+  serviceOfferingName: html5-apps-repo
+  servicePlanName: app-host
+content-agent-service:
+  serviceOfferingName: content-agent
+  servicePlanName: application
+html5-apps-deployer:
+  env:
+    SAP_CLOUD_SERVICE: incidentmanagement.kyma
+  image:
+    repository: ivovilu/incident-management-html5-deployer
+    tag: kyma-v2
+  bindings:
+    xsuaa:
+      serviceInstanceName: xsuaa
+    destination:
+      serviceInstanceName: destination
+    html5-apps-repo:
+      serviceInstanceName: html5-apps-repo-host
+    content-agent-service:
+      serviceInstanceName: content-agent-service
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1G
+    requests:
+      cpu: 1000m
+      memory: 1G
+  envFrom:
+    - configMapRef:
+        name: "{{ .Release.Name }}-html5-apps-deployer-configmap"
+backendDestinations:
+  srv-api:
+    service: srv

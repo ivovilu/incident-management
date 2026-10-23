@@ -17,3 +17,8 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+
+# Generated UI / deployment content
+app/*/dist/
+.deploy/html5-deployer/resources/
+package-lock.json

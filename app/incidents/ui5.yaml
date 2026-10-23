@@ -2,7 +2,7 @@
 
 specVersion: "4.0"
 metadata:
-  name: ns.incidents
+  name: ns.kyma.incidents
 type: application
 server:
   customMiddleware:

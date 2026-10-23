@@ -25,7 +25,7 @@ sap.ui.define(['sap/fe/test/ObjectPage'], function(ObjectPage) {
 
     return new ObjectPage(
         {
-            appId: 'ns.incidents',
+            appId: 'ns.kyma.incidents',
             componentId: 'IncidentsObjectPage',
             contextPath: '/Incidents'
         },

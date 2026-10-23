@@ -25,7 +25,7 @@ sap.ui.define(['sap/fe/test/ListReport'], function(ListReport) {
 
     return new ListReport(
         {
-            appId: 'ns.incidents',
+            appId: 'ns.kyma.incidents',
             componentId: 'IncidentsList',
             contextPath: '/Incidents'
         },
